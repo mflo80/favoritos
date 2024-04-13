@@ -46,8 +46,10 @@
                         <h3 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h3>
                     </div>
                     <div class="modal-body">
-                        <h3>{{ $favorito['nombre'] }}</h3>
-                        <h5>¿Estás seguro de que quieres eliminar este favorito?</h5>
+                        @if(isset($favorito))
+                            <h3>{{ $favorito['nombre'] }}</h3>
+                            <h5>¿Estás seguro de que quieres eliminar este favorito?</h5>
+                        @endif
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-large btn-secondary" data-dismiss="modal">No</button>
