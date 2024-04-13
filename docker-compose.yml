@@ -40,12 +40,15 @@ services:
     restart: unless-stopped
     environment:
       - APP_NAME=Favoritos
+      - APP_URL=https://localhost
       - CACHE_DRIVER=redis
+      - DB_CONNECTION=mysql
       - DB_HOST=favoritosdb
       - DB_PORT=3306
       - DB_USERNAME=root
       - DB_PASSWORD=F4vor1TO5W3b5
       - DB_DATABASE=favoritos
+      - REDIS_CLIENT=phpredis
       - REDIS_HOST=favoritosredis
     depends_on:
       favoritosdb:
@@ -67,6 +70,7 @@ services:
     restart: unless-stopped
     environment:
       - APP_NAME=Favoritos
+      - APP_URL=https://localhost
       - FAVORITOS=http://favoritosbackend/api/favoritos
       - AJUSTES=http://favoritosbackend/api/ajustes
     depends_on:
