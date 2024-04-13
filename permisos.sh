@@ -5,8 +5,8 @@ echo "------------------------------------------------------"
 echo "                ACTUALIZANDO PERMISOS                 "
 echo "------------------------------------------------------"
 echo "------------------------------------------------------"
-sudo chown -R www-data.mflorio-adm favoritos-frontend &&
-sudo chown -R www-data.mflorio-adm favoritos-backend &&
+sudo chown -R www-data. favoritos-frontend &&
+sudo chown -R www-data. favoritos-backend &&
 cd favoritos-frontend &&
 sudo find . -type d -exec chmod 775 {} \; &&
 sudo find . -type f -exec chmod 664 {} \; &&

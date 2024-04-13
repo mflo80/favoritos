@@ -4,8 +4,6 @@ services:
   favoritosdb:
     image: marftoru/mysql:8.1.0
     container_name : favoritosdb
-    ports:
-      - '3306:3306'
     command:
       --default-authentication-plugin=mysql_native_password
       --character-set-server=utf8mb4
@@ -39,9 +37,6 @@ services:
   favoritosbackend:
     image: marftoru/laravel10:php8.3-nginx
     container_name : favoritosbackend
-    ports:
-      - '8001:80'
-      - '8002:443'
     restart: unless-stopped
     environment:
       - APP_NAME=Favoritos
@@ -68,6 +63,7 @@ services:
     container_name : favoritosfrontend
     ports:
       - '8000:443'
+      - '8080:80'
     restart: unless-stopped
     environment:
       - APP_NAME=Favoritos
