@@ -37,6 +37,7 @@ class AjustesController extends Controller
     public function buscar($clienteIP)
     {
         try {
+            $clienteIP = urldecode($clienteIP);
             $ajustes = Ajustes::where('clienteIP', $clienteIP)->first();
 
             if ($ajustes) {
@@ -46,6 +47,11 @@ class AjustesController extends Controller
                     'data' => $ajustes
                 ], 200);
             }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No se encontraron ajustes para el cliente con IP ' . $clienteIP
+            ], 404);
         } catch (ModelNotFoundException $ex) {
             return response()->json([
                 'status' => 'error',

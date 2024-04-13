@@ -20,7 +20,7 @@ class FavoritosController extends Controller
             "Accept" => "application/json",
         ])->withOptions([
             'verify' => false,
-        ])->get(getenv('AJUSTES') . "?clienteIP=" . $clienteIP);
+        ])->get(getenv('AJUSTES') . "/" . urlencode($clienteIP));
 
         $ajustes = json_decode($response->body(), true);
 
@@ -44,13 +44,13 @@ class FavoritosController extends Controller
             $ajustes = json_decode($response->body(), true);
 
             if ($response->getStatusCode() === 201) {
-                $ajustes = $ajustes['data'][0];
+                $ajustes = $ajustes['data'];
                 $estado = true;
             }
         }
 
         if ($response->getStatusCode() === 200) {
-            $ajustes = $ajustes['data'][0];
+            $ajustes = $ajustes['data'];
             $estado = true;
         }
 

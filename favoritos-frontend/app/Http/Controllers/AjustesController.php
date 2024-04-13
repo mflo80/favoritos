@@ -15,7 +15,7 @@ class AjustesController extends Controller
             "Accept" => "application/json",
         ])->withOptions([
             'verify' => false,
-        ])->get(getenv('AJUSTES') . "?clienteIP=" . $clienteIP);
+        ])->get(getenv('AJUSTES') . "/" . urlencode($clienteIP));
 
         $ajustes = json_decode($response->body(), true);
 
@@ -39,13 +39,13 @@ class AjustesController extends Controller
             $ajustes = json_decode($response->body(), true);
 
             if ($response->getStatusCode() === 201) {
-                $ajustes = $ajustes['data'][0];
+                $ajustes = $ajustes['data'];
                 $estado = true;
             }
         }
 
         if ($response->getStatusCode() === 200) {
-            $ajustes = $ajustes['data'][0];
+            $ajustes = $ajustes['data'];
             $estado = true;
         }
 
@@ -67,7 +67,7 @@ class AjustesController extends Controller
             "Accept" => "application/json",
         ])->withOptions([
             'verify' => false,
-        ])->get(getenv('AJUSTES') . "?clienteIP=" . $clienteIP);
+        ])->get(getenv('AJUSTES') . "/" . urlencode($clienteIP));
 
         $ajustes = json_decode($response->body(), true);
 
@@ -78,7 +78,7 @@ class AjustesController extends Controller
         }
 
         if ($response->getStatusCode() === 200) {
-            $ajustes = $ajustes['data'][0];
+            $ajustes = $ajustes['data'];
 
             if ($ajustes['clienteIP'] !== $clienteIP) {
                 return redirect()->route('ajustes.index')->withErrors([
