@@ -1,0 +1,107 @@
+.contenedorEditar {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.formularioEditar {
+    width: 100%;
+    width: 500px;
+    height: 600px;
+    padding: 30px 50px 30px 50px;
+    margin: 150px auto 0px auto;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+	-webkit-transition: box-shadow .5s ease;
+	-moz-transition: box-shadow .5s ease;
+	-o-transition: box-shadow .5s ease;
+	-ms-transition: box-shadow .5s ease;
+	transition: box-shadow .5s ease;
+    color: bisque;
+    font-size: 16px;
+}
+
+.formularioEditar h2 {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: antiquewhite;
+    font-size: 20px;
+}
+
+.formularioEditar input[type="text"], .formularioEditar input[type="file"], .formularioEditar select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.formularioEditar label {
+    margin-top: 10px;
+    display: block;
+}
+
+.formularioEditar .radioFondo {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.formularioEditar .radioFondo input{
+    transform: translateY(3px);
+}
+
+.formularioEditar .tipoFondo{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.formularioEditar .logoFondo {
+    transform: translateY(-8px);
+}
+
+.formularioEditar .logoFondo img{
+    width: 150px;
+    height: 130px;
+    border-radius: 15px;
+    border: 2px solid #000000;
+}
+
+.formularioEditar .fileFondo label{
+    margin-top: 8px;
+}
+
+.formularioEditar .fileFondo input{
+    width: 315px;
+    transform: translateX(-20px);
+}
+
+#imagenFondoDef {
+    width: 300px;
+    margin-top: 9px;
+    margin-left: 1px;
+    border-radius: 15px;
+    border: 2px solid #000000;
+    color: #000;
+    background-color: #fff;
+}
+
+.formularioEditar .logoColor {
+    transform: translateX(-2px) translateY(-5px);
+}
+
+.formularioEditar .logoVistaPrevia {
+    transform: translateX(123px) translateY(-15px);
+    margin-bottom: 11px;
+}
+
+.formularioEditar .btn-editar {
+    margin-top: 2px;
+}
+

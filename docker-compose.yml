@@ -1,0 +1,87 @@
+version: '3'
+
+services:
+  favoritosdb:
+    image: marftoru/mysql:8.1.0
+    container_name : favoritosdb
+    ports:
+      - '3306:3306'
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --max_connections=1000
+    restart: unless-stopped
+    volumes:
+      - './favoritos-db:/var/lib/mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=F4vor1TO5W3b5
+      - MYSQL_DATABASE=favoritos
+      - TZ=America/Montevideo
+      - LANG=C.UTF-8
+    healthcheck:
+      test: "exit 0"
+    networks:
+      favoritosnet:
+        ipv4_address: 192.168.12.2
+        
+  favoritosredis:
+    image: redis:bookworm
+    container_name : favoritosredis
+    restart: unless-stopped
+    depends_on:
+      favoritosdb:
+        condition: service_healthy
+    networks:
+      favoritosnet:
+        ipv4_address: 192.168.12.3
+        
+  favoritosbackend:
+    image: marftoru/laravel10:php8.3-nginx
+    container_name : favoritosbackend
+    ports:
+      - '8001:80'
+      - '8002:443'
+    restart: unless-stopped
+    environment:
+      - APP_NAME=Favoritos
+      - CACHE_DRIVER=redis
+      - DB_HOST=favoritosdb
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=F4vor1TO5W3b5
+      - DB_DATABASE=favoritos
+      - REDIS_HOST=favoritosredis
+    depends_on:
+      favoritosdb:
+        condition: service_healthy
+      favoritosredis:
+        condition: service_started
+    volumes:
+      - './favoritos-backend:/var/www/html'
+    networks:
+      favoritosnet:
+        ipv4_address: 192.168.12.4
+
+  favoritosfrontend:
+    image: marftoru/laravel10:php8.3-nginx
+    container_name : favoritosfrontend
+    ports:
+      - '8000:443'
+    restart: unless-stopped
+    environment:
+      - APP_NAME=Favoritos
+      - FAVORITOS=http://favoritosbackend/api/favoritos
+      - AJUSTES=http://favoritosbackend/api/ajustes
+    depends_on:
+      favoritosbackend:
+        condition: service_started
+    volumes:
+      - './favoritos-frontend:/var/www/html'
+    networks:
+      favoritosnet:
+        ipv4_address: 192.168.12.5
+
+networks:
+  favoritosnet:
+    external: true
