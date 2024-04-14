@@ -37,6 +37,9 @@ services:
   favoritosbackend:
     image: marftoru/laravel10:php8.3-nginx
     container_name : favoritosbackend
+    ports:
+      - '8001:443'
+      - '8002:80'
     restart: unless-stopped
     environment:
       - APP_NAME=Favoritos

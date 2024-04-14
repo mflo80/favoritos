@@ -23,5 +23,7 @@ class Favoritos extends Model
         'colorFondoB',
         'colorTexto',
         'tipo',
+        'fechaCreacion',
+        'fechaActualizacion'
     ];
 }

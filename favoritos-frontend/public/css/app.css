@@ -49,6 +49,7 @@ nav button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
     padding: 20px 0 40px 0;
 }
 
@@ -62,6 +63,7 @@ nav button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
     width: 150px;
     height: 130px;
     border: 3px solid #ffffff;

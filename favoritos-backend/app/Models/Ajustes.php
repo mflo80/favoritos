@@ -23,5 +23,7 @@ class Ajustes extends Model
         'tipo',
         'boxSize',
         'boxColor',
+        'fechaCreacion',
+        'fechaActualizacion'
     ];
 }

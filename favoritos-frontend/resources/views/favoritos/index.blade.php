@@ -8,8 +8,8 @@
     </nav>
     <div class="contenedor">
         @foreach($favoritos as $favorito)
-            <div class="paginasWebs">
-                <div id="box" class="box" oncontextmenu="return showContextMenu(event, {{ $favorito['id'] }})">
+            <div class="paginasWebs" data-id="{{ $favorito['id'] }}" id="favorito{{ $favorito['id'] }}" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div id="box" class="box" oncontextmenu="return showContextMenu(event, {{ $favorito['id'] }})" data-id="{{ $favorito['id'] }}">
                     <a href="{{ $favorito['url'] }}" target="_blank">
                         <img src="{{ asset('img/'.$favorito['imagenFondo']) }}"
                             alt="{{ $favorito['nombre'] }}" class="img-fluid">
@@ -66,4 +66,5 @@
 
     <script src="{{ asset('js/config.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+
 @endsection

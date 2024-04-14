@@ -33,6 +33,7 @@ Route::controller(FavoritosController::class)
     Route::post('/favoritos/crear', 'guardar')->name('favoritos.guardar');
     Route::get('/favoritos/{id}', 'editar')->name('favoritos.editar');
     Route::put('/favoritos/{id}', 'modificar')->name('favoritos.modificar');
+    Route::put('/favoritos/actualizarOrden/{idCambiado1}/{idCambiado2}', 'actualizarOrden')->name('favoritos.actualizarOrden');
     Route::delete('/favoritos/{id}', 'eliminar')->name('favoritos.eliminar');
 });
 

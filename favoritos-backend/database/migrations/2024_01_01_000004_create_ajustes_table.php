@@ -21,6 +21,8 @@ class CreateAjustesTable extends Migration
             $table->enum('tipo', ['imagen', 'color', 'predef'])->default('imagen');
             $table->string('boxSize')->nullable();
             $table->string('boxColor')->nullable();
+            $table->datetime('fechaCreacion');
+            $table->datetime('fechaActualizacion')->nullable();
             $table->softDeletes();
         });
     }

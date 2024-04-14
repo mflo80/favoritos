@@ -23,6 +23,7 @@ Route::controller(FavoritosController::class)
     Route::get('/favoritos/{id}', 'buscar_favorito');
     Route::get('/favoritos/cliente/{clienteIP}', 'buscar_cliente');
     Route::put('/favoritos/{id}', 'modificar');
+    Route::put('/favoritos/actualizarOrden/{idCambiado1}/{idCambiado2}/{clienteIP}', 'actualizarOrden');
     Route::delete('/favoritos/{id}', 'eliminar');
 });
 

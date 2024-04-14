@@ -23,6 +23,8 @@ class CreateFavoritosTable extends Migration
             $table->string('colorFondoB')->nullable();
             $table->string('colorTexto')->nullable();
             $table->enum('tipo', ['imagen', 'color', 'predef'])->default('imagen');
+            $table->datetime('fechaCreacion');
+            $table->datetime('fechaActualizacion')->nullable();
             $table->softDeletes();
         });
     }

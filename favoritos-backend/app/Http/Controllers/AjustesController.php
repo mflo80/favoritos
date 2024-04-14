@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ajustes;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -77,6 +78,8 @@ class AjustesController extends Controller
             $ajustes->tipo = $request->tipo;
             $ajustes->boxSize = $request->boxSize;
             $ajustes->boxColor = $request->boxColor;
+            $ajustes->fechaCreacion = Carbon::now('America/Montevideo');
+            $ajustes->fechaActualizacion = null;
             $ajustes->save();
 
             return response()->json(
@@ -104,6 +107,7 @@ class AjustesController extends Controller
             $ajustes->tipo = $request->tipo;
             $ajustes->boxSize = $request->boxSize;
             $ajustes->boxColor = $request->boxColor;
+            $ajustes->fechaActualizacion = Carbon::now('America/Montevideo');
             $ajustes->save();
 
             return response()->json(

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http as Https;
+use Illuminate\Support\Facades\Log;
 
 class FavoritosController extends Controller
 {
@@ -504,6 +505,8 @@ class FavoritosController extends Controller
 
     public function eliminar($id)
     {
+        $clienteIP = urlencode(request()->ip());
+
         $response = Https::withHeaders([
             "Accept" => "application/json",
         ])->withOptions([
@@ -531,7 +534,9 @@ class FavoritosController extends Controller
                 "Accept" => "application/json",
             ])->withOptions([
                 'verify' => false,
-            ])->delete(getenv('FAVORITOS') . "/" . $id);
+            ])->delete(getenv('FAVORITOS') . "/" . $id, [
+                'clienteIP' => $clienteIP
+            ]);
 
             if ($response->getStatusCode() === 200) {
                 return redirect()->route('favoritos.index')->withErrors([
@@ -546,6 +551,27 @@ class FavoritosController extends Controller
 
         return redirect()->route('favoritos.index')->withErrors([
             'message' => "Error al cargar la página favorita."
+        ]);
+    }
+
+    public function actualizarOrden($idCambiado1, $idCambiado2)
+    {
+        $clienteIP = urlencode(request()->ip());
+
+        $response = Https::withHeaders([
+            "Accept" => "application/json",
+        ])->withOptions([
+            'verify' => false,
+        ])->put(getenv('FAVORITOS') . "/actualizarOrden/" . $idCambiado1 . "/" . $idCambiado2 . "/" . $clienteIP);
+
+        if ($response->getStatusCode() === 200) {
+            return response()->json([
+                'message' => "Página favorita actualizada correctamente."
+            ]);
+        }
+
+        return response()->json([
+            'message' => "Error al actualizar la página favorita."
         ]);
     }
 }
